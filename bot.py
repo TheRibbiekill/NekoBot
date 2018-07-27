@@ -33,8 +33,8 @@ class NekoBot(commands.AutoShardedBot):
                          pm_help=None,
                          shard_ids=shard_ids,
                          shard_count=shards,
-                         # status=discord.Status.dnd,
-                         # activity=discord.Game(name="Restarting..."),
+                         status=discord.Status.dnd,
+                         activity=discord.Game(name="Restarting..."),
                          fetch_offline_members=False,
                          max_messages=105,
                          help_attrs={"hidden": True})
@@ -51,9 +51,8 @@ class NekoBot(commands.AutoShardedBot):
                                                        user="root", password=config.dbpass,
                                                        db="nekobot", loop=self.loop, autocommit=True)
 
-        if not config.debug:
-            self.loop.create_task(_init_sql())
-            self.loop.create_task(_init_redis())
+        self.loop.create_task(_init_sql())
+        self.loop.create_task(_init_redis())
 
         for file in os.listdir("modules"):
             if file.endswith(".py"):
