@@ -3,3 +3,5 @@ aioredis
 aiomysql
 aiohttp
 rethinkdb
+ujson
+colorthief
