@@ -85,7 +85,7 @@ class economy:
 
     async def __add_bettime(self, user:int):
         try:
-            data = await r.table("economy").get(str(user)).run(self.bot.r_conn)
+            data = await r.table("economy").get(str(user)).run(self.bot.r_con
             bettimes = data["bettimes"]
             bettimes.append(str(int(time.time())))
             await r.table("economy").get(str(user)).update({"bettimes": bettimes}).run(self.bot.r_conn)
@@ -559,7 +559,7 @@ class economy:
 
         win_embed = discord.Embed(color=0xDEADBF)
         win_embed.title = "Blackjack Win"
-        win_embed.description = "**%s** (%s) has won %s" % (ctx.author.name, ctx.author.id, int(amount * .75))
+        win_embed.description = "**%s** (%s) has won %s" % (ctx.author.name, ctx.author.id, int(amount * 1.5))
 
         lose_embed = discord.Embed(color=0xDEADBF)
         lose_embed.title = "Blackjack Lose"
@@ -636,7 +636,7 @@ class economy:
             else:
                 em.description = "I went over 21 and you won ;w;"
                 await self.__post_to_hook("Blackjack Won", ctx.author, amount)
-                await self.__update_balance(ctx.author.id, author_balance + int(amount * .75))
+                await self.__update_balance(ctx.author.id, author_balance + int(amount * 1.5))
 
             bot_value = f"%s %s | %s %s | %s %s" % (card_list[bot_deck[0]], bot_deck_n[0],
                                                     card_list[bot_deck[1]], bot_deck_n[1],
@@ -704,7 +704,7 @@ class economy:
             else:
                 em.description = "I went over 21 and you won ;w;"
                 await self.__post_to_hook("Blackjack Won", ctx.author, amount)
-                await self.__update_balance(ctx.author.id, author_balance + int(amount * .75))
+                await self.__update_balance(ctx.author.id, author_balance + int(amount * 1.5))
 
             bot_value = f"%s %s | %s %s | %s %s | %s %s" % (card_list[bot_deck[0]], bot_deck_n[0],
                                                             card_list[bot_deck[1]], bot_deck_n[1],
@@ -776,7 +776,7 @@ class economy:
             else:
                 em.description = "I went over 21 and you won ;w;"
                 await self.__post_to_hook("Blackjack Won", ctx.author, amount)
-                await self.__update_balance(ctx.author.id, author_balance + int(amount * .75))
+                await self.__update_balance(ctx.author.id, author_balance + int(amount * 1.5))
 
             bot_value = f"%s %s | %s %s | %s %s | %s %s | %s %s" % (card_list[bot_deck[0]], bot_deck_n[0],
                                                                     card_list[bot_deck[1]], bot_deck_n[1],
@@ -795,7 +795,7 @@ class economy:
         if author_total > bot_total:
             em.description = "You beat me ;w;"
             await self.__post_to_hook("Blackjack Won", ctx.author, amount)
-            await self.__update_balance(ctx.author.id, author_balance + int(amount * .75))
+            await self.__update_balance(ctx.author.id, author_balance + int(amount * 1.5))
         else:
             em.description = "I beat you >:3"
             await self.__post_to_hook("Blackjack Loss", ctx.author, amount)
