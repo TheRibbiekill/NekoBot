@@ -251,11 +251,11 @@ class economy:
         else:
             em = discord.Embed(color=0xDEADBF)
             em.title = "Daily Bonus"
-            em.description = "You have received **2500** credits!"
+            em.description = "You have received **5000** credits!"
             em.set_footer(text="Voting will give you 7500 👀")
-            await self.__post_to_hook("Daily (Non Vote)", ctx.author, 2500)
+            await self.__post_to_hook("Daily (Non Vote)", ctx.author, 5000)
             await self.__update_payday_time(user.id)
-            await self.__update_balance(user.id, user_balance + 2500)
+            await self.__update_balance(user.id, user_balance + 5000)
             await ctx.send(embed=em)
 
     @commands.command()
